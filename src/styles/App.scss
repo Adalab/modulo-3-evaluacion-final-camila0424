@@ -1,0 +1,62 @@
+@use './core/reset';
+
+body{
+    background-color: grey;
+    color: white;
+    padding: 30px;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    text-align: left;
+}
+.header img{
+    height: 200px;
+}
+.header label,
+.header input,
+.header select {
+    width: 100%;
+    border-radius: 10px;
+   
+}
+.header input,
+.header select{
+    border: solid #BEA051 3px;
+    background-color: grey;
+    color: white;
+    height: 35px;
+}
+.form-group{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.listActors{
+    margin-top: 20px;
+    gap: 20px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+.listObj{
+    border: solid rgb(161, 161, 161) 2px;
+    width: 300px;
+    background-color: #BEA051;
+    padding: 10px;
+}
+
+.listObj img{
+    max-width: 100%;
+}
