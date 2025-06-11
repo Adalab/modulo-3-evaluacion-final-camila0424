@@ -4,7 +4,7 @@ import App from "./components/App.jsx";
 import { HashRouter } from "react-router";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <StrictMode basename="./modulo-3-evaluacion-final-camila0424">
     <HashRouter>
       <App />
     </HashRouter>

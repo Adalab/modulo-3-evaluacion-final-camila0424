@@ -9,5 +9,6 @@ export default defineConfig({
     watch: {
       usePolling: true
     }
-  }
+  },
+  base: "./modulo-3-evaluacion-final-camila0424"
 });

@@ -81,13 +81,15 @@ body{
     text-decoration: none;
 }
 .white-link-detail{
-    color: rgba(181, 3, 3, 0.786);
+    color: white;
     text-decoration: none;
     position: absolute;
-    bottom:15px; 
-    margin-bottom: 20px;
-    right: 100px;
-   
+    bottom:180px; 
+    right: 180px;
+    border: solid  rgba(181, 3, 3, 0.786);
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(181, 3, 3, 0.786);
 }
 .detailActors img{
     width:  20%;

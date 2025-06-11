@@ -37,7 +37,7 @@ function App() {
   return (
     <>
       <header className="header">
-        <img src="../src/images/pngegg.png" alt="Logo de Harry Potter" />
+        <img src="./src/images/pngegg.png" alt="Logo de Harry Potter" />
         {location.pathname === "/" && (
           <FormInput
             handleInputFilterName={handleInputFilterName}
