@@ -4,12 +4,13 @@ import List from "./list/List";
 import { Routes, Route } from "react-router";
 import FormInput from "./list/Form";
 import ActorDetail from "./pages/ActorDetail";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const [allActors, setAllActors] = useState([]);
   const [filterName, setFilterName] = useState("");
-
   const [selectedHouse, setSelectedHouse] = useState("Gryffindor");
+  const location = useLocation();
 
   useEffect(() => {
     fetch("https://hp-api.onrender.com/api/characters")
@@ -36,18 +37,25 @@ function App() {
   return (
     <>
       <header className="header">
-        <img src="../src/images/pngegg.png" alt="Logo de Harry poter" />
-        <FormInput
-          handleInputFilterName={handleInputFilterName}
-          selectedHouse={selectedHouse}
-          filterName={filterName}
-          handleChange={handleChange}
-        />
+        <img src="../src/images/pngegg.png" alt="Logo de Harry Potter" />
+        {location.pathname === "/" && (
+          <FormInput
+            handleInputFilterName={handleInputFilterName}
+            selectedHouse={selectedHouse}
+            filterName={filterName}
+            handleChange={handleChange}
+          />
+        )}
       </header>
 
       <main>
         <Routes>
-          <Route path="/" element={<List allActors={filteredActors} />} />
+          <Route
+            path="/"
+            element={
+              <List allActors={filteredActors} filterName={filterName} />
+            }
+          />
           <Route
             path="/detail/:name"
             element={<ActorDetail allActors={allActors} />}

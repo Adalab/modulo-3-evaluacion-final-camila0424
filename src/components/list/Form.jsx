@@ -29,7 +29,7 @@ function FormInput({
           <option value="Slytherin">Slytherin</option>
           <option value="Hufflepuff">Hufflepuff</option>
           <option value="Ravenclaw">Ravenclaw</option>
-          <option value="">Sin casa</option>
+          <option value="">Casa desconocida</option>
         </select>
       </div>
     </form>

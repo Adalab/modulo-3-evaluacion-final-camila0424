@@ -1,26 +1,51 @@
-import { Link, useParams } from "react-router";
+import { Link, useParams } from "react-router-dom";
 
 function ActorDetail({ allActors }) {
-  const params = useParams();
-
+  const objetoDeParams = useParams();
+  console.log(objetoDeParams);
+  const { name } = objetoDeParams;
   const actorToShow = allActors.find(
-    (eachActorObj) => eachActorObj.name === params.name
+    (eachActorObj) => eachActorObj.name === name
   );
+  if (!actorToShow) {
+    return (
+      <div>
+        <p>Actor no encontrado.</p>
+        <Link to="/">Volver</Link>
+      </div>
+    );
+  }
 
   return (
     <>
-      <div>
+      <div className="detailActors">
         <img
           src={actorToShow.image || "./src/images/escudo-hogwarts.png"}
           alt={actorToShow.name}
         />
-        <h3>{actorToShow.name}</h3>
-        <p>{actorToShow.species}</p>
-        <p>{actorToShow.house}</p>
-        <p>{actorToShow.patronus}</p>
-        <p>{actorToShow.alternate_names}</p>
-        <p>{actorToShow.alive}</p>
-        <Link to="/">Volver</Link>
+        <div>
+          <h3>{actorToShow.name}</h3>
+          <p>Species: {actorToShow.species}</p>
+          <p>House: {actorToShow.house}</p>
+          <p>Patronus: {actorToShow.patronus}</p>
+          <p>Alternate names: {actorToShow.alternate_names}</p>
+          <p className="alive">
+            {actorToShow.alive ? (
+              <>
+                <img src="./src/images/vivo.png" alt="está vivo" />
+                <span>Con vida</span>
+              </>
+            ) : (
+              <>
+                <img src="./src/images/muerto.png" alt="está muerto" />
+                <span>Sin vida</span>
+              </>
+            )}
+          </p>
+        </div>
+        <Link to="/" className="white-link-detail">
+          Volver
+        </Link>
       </div>
     </>
   );
