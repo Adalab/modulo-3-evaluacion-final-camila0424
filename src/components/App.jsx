@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import "../styles/App.scss";
 import List from "./list/List";
+import { Routes, Route } from "react-router";
+import FormInput from "./list/Form";
+import ActorDetail from "./pages/ActorDetail";
 
 function App() {
   const [allActors, setAllActors] = useState([]);
   const [filterName, setFilterName] = useState("");
+
+  const [selectedHouse, setSelectedHouse] = useState("Gryffindor");
 
   useEffect(() => {
     fetch("https://hp-api.onrender.com/api/characters")
@@ -18,44 +23,37 @@ function App() {
     setFilterName(ev.target.value);
   };
 
+  function handleChange(event) {
+    setSelectedHouse(event.target.value);
+  }
+
   const filteredActors = allActors.filter(
     (actor) =>
-      actor.name.toLocaleLowerCase().includes(filterName.toLocaleLowerCase()) ||
-      actor.lastname
-        .toLocaleLowerCase()
-        .includes(filterName.toLocaleLowerCase())
+      actor.house === selectedHouse &&
+      actor.name.toLocaleLowerCase().includes(filterName.toLocaleLowerCase())
   );
 
   return (
     <>
       <header className="header">
         <img src="../src/images/pngegg.png" alt="Logo de Harry poter" />
-        <form action="">
-          <div className="form-group">
-            <label htmlFor="">Busca por personaje</label>
-            <input
-              onInput={handleInputFilterName}
-              value={filterName.name}
-              type="text"
-              name="name"
-              id="name"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="">Selecciona una casa</label>
-            <select name="house" id="house">
-              <option value="">Selecciona</option>
-              <option value="Gryffindor">Gryffindor</option>
-              <option value="Slytherin">Slytherin</option>
-              <option value="Hufflepuff">Hufflepuff</option>
-              <option value="Ravenclaw">Ravenclaw</option>
-            </select>
-          </div>
-        </form>
+        <FormInput
+          handleInputFilterName={handleInputFilterName}
+          selectedHouse={selectedHouse}
+          filterName={filterName}
+          handleChange={handleChange}
+        />
       </header>
 
-      <List allActors={filteredActors} />
+      <main>
+        <Routes>
+          <Route path="/" element={<List allActors={filteredActors} />} />
+          <Route
+            path="/detail/:name"
+            element={<ActorDetail allActors={allActors} />}
+          />
+        </Routes>
+      </main>
     </>
   );
 }
