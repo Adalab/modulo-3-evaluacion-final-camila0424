@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router";
 import FormInput from "./list/Form";
 import ActorDetail from "./pages/ActorDetail";
 import { useLocation } from "react-router-dom";
+import logoImage from "../images/pngegg.png";
 
 function App() {
   const [allActors, setAllActors] = useState([]);
@@ -37,7 +38,7 @@ function App() {
   return (
     <>
       <header className="header">
-        <img src="../src/images/pngegg.png" alt="Logo de Harry Potter" />
+        <img src={logoImage} alt="Logo de Harry Potter" />
         {location.pathname === "/" && (
           <FormInput
             handleInputFilterName={handleInputFilterName}
